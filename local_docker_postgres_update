@@ -1,0 +1,16 @@
+Comands to upgrade Postgres locally
+
+#Backup
+docker-compose up
+sudo cp .pgata .pgdata_old
+docker exec -it pythonpro_database /usr/bin/pg_dumpall -U pythonpro > dumpfile
+docker-compose down
+sudo rm -rf .pgdata
+
+# Update docker compose file and load backup
+docker-compose up
+docker exec -i pythonpro_database psql -U pythonpro < dumpfile
+
+#Verify database and clean stuff if it´s ok
+sudo rm -rf .pgdata_old
+rm dumpfile
