@@ -4,12 +4,8 @@ echo -e 'export PS1="\W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]
 
 
 # Install dev stuff
-sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm gettext libncurses5-dev tk-dev tcl-dev blt-dev libgdbm-dev git python-dev python3-dev aria2 vim libnss3-tools python3-venv liblzma-dev libpq-dev keychain
+sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm gettext libncurses5-dev tk-dev tcl-dev blt-dev libgdbm-dev git python3-dev aria2 vim libnss3-tools liblzma-dev libpq-dev
 
-# XLaunch configuration:
-## Install on windows: https://sourceforge.net/projects/vcxsrv/
-## During initialization you need check "Disable Access Control" every time, or it will not work
-echo -e 'export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0' >> ~/.bashrc
 
 #Pyenv
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
@@ -32,15 +28,8 @@ echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose
+sudo apt install -y docker-ce
 sudo usermod -aG docker $USER
-
-# Nodejs
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-nvm install 14
-
-# Vue cli
-npm install -g vue-cli
 
 # SSH: https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 ssh-keygen -o -a 100 -t ed25519
